@@ -1,0 +1,27 @@
+version: '3.0'
+
+services:
+  web:
+    image: 'captacion-php'
+    ports:
+      - '8000:8000'
+    volumes:
+      - "./:/app"
+    command: php artisan serve --host=0.0.0.0
+
+  mysql:
+    image: 'mysql:5.7'
+    ports:
+      - '3307:3307'
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+    volumes:
+      - mysql-data:/var/lib/mysql
+  
+  mailtrap:
+    image: 'eaudeweb/mailtrap'
+    ports:
+      - "8081:80"
+
+volumes:
+  mysql-data:
